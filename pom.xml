@@ -37,6 +37,11 @@
       <artifactId>quarkus-resteasy-reactive</artifactId>
     </dependency>
     <dependency>
+        <groupId>io.quarkus</groupId>
+        <artifactId>quarkus-resteasy-reactive-jackson</artifactId>
+    </dependency>
+
+    <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-jacoco</artifactId>
     </dependency>
@@ -58,6 +63,8 @@
       <artifactId>rest-assured</artifactId>
       <scope>test</scope>
     </dependency>
+
+
   </dependencies>
   <build>
     <plugins>
