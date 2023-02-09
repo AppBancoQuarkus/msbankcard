@@ -16,7 +16,7 @@ public class BankCardEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long IdBANKCARD;   
+    private long IdBANKCARD;   
 
     @Column(length = 16)
     private String cardnumber;

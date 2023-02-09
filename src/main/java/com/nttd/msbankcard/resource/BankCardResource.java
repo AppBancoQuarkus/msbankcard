@@ -13,7 +13,7 @@ import com.nttd.msbankcard.dto.ResponseDto;
 import com.nttd.msbankcard.service.BankCardService;
 import jakarta.ws.rs.Consumes;
 
-@Path("/api/bankcard/card")
+@Path("/api/bankcard")
 public class BankCardResource {
 
     @Inject
