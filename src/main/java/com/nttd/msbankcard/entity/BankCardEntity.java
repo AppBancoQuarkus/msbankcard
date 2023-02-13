@@ -12,7 +12,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity(name = "BQMBANKCARD")
-public class BankCardEntity {
+public class BankCardEntity  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

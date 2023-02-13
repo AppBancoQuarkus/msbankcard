@@ -1,10 +1,12 @@
 package com.nttd.msbankcard.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@AllArgsConstructor
 public class BankCardDto {
 
     private String cardnumber;
@@ -16,15 +18,5 @@ public class BankCardDto {
     public BankCardDto() {
     }
 
-
-    public BankCardDto(String cardnumber, int pin, String duedate, int validationcode) {
-        this.cardnumber = cardnumber;
-        this.pin = pin;
-        this.duedate = duedate;
-        this.validationcode = validationcode;
-    }
-
-
-    
 
 }

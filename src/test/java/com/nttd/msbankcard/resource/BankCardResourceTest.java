@@ -9,6 +9,7 @@ import org.mockito.Mockito;
 
 import com.nttd.msbankcard.dto.BankCardDto;
 import com.nttd.msbankcard.dto.ResponseDto;
+import com.nttd.msbankcard.entity.BankCardEntity;
 import com.nttd.msbankcard.service.BankCardService;
 
 import io.quarkus.test.junit.QuarkusTest;
@@ -30,7 +31,7 @@ public class BankCardResourceTest {
 
         BankCardDto obj  = new BankCardDto("4151415141511542",1221,"",12);
         Mockito.when(bankCardService.addBankCard(obj))
-               .thenReturn(new ResponseDto(201, "Exitoso"));
+               .thenReturn(new ResponseDto(201, "Exitoso",new BankCardEntity()));
 
         Response response = bankCardResource.addBankCard(obj);
         assertNotNull(response);

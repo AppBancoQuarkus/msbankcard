@@ -27,7 +27,7 @@ public class BankCardServiceImpl implements BankCardService {
             bcEntity.setDuedate(bankCardDto.getDuedate());
             bcEntity.setValidationcode(bankCardDto.getValidationcode());
             bankCardRepository.persist(bcEntity);
-            return  new ResponseDto(201,"Exitoso.");
+            return  new ResponseDto(201,"Exitoso.",bcEntity);
         }catch(Exception ex){
             return  new ResponseDto(400,"Bad Request.",ex.getMessage());
         }

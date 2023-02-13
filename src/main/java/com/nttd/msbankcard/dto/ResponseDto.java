@@ -1,6 +1,7 @@
 package com.nttd.msbankcard.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.nttd.msbankcard.entity.BankCardEntity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -14,6 +15,7 @@ public class ResponseDto {
     private String message;
     private String errorMessage;
     private String description;
+    private BankCardEntity bankCardEntity;
 
 
     
@@ -22,9 +24,10 @@ public class ResponseDto {
 
 
 
-    public ResponseDto(int code,String message) {
+    public ResponseDto(int code,String message,BankCardEntity bankCardEntity) {
         this.code = code;
         this.message = message;
+        this.bankCardEntity = bankCardEntity;
     }
 
 
