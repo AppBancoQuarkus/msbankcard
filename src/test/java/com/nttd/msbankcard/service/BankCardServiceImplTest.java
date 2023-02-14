@@ -27,7 +27,7 @@ public class BankCardServiceImplTest {
     @InjectMock
     BankCardRepository bankCardRepository;
 
-
+    /* Registro de tarjeta de credito o debito correcto */
     @Test
     public void addBankCard_Correcto() {
         
@@ -39,6 +39,7 @@ public class BankCardServiceImplTest {
         assertEquals(Response.Status.CREATED.getStatusCode(), responsedto.getCode());
     }
 
+    /* Registro de tarjeta de credito o debito incorrecto */
     @Test
     public void addBankCard_Incorrecto() {
         

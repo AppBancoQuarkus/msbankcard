@@ -22,7 +22,7 @@ public class BankCardResource {
     @Inject
     Logger logger;
 
-    
+    /* Registrar tarjeta de debito o Credito */
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)

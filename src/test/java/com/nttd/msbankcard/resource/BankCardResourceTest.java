@@ -34,14 +34,17 @@ public class BankCardResourceTest {
     @ConfigProperty(name = "valor.code.creacion")
     int code_creado;
 
-  
+    @ConfigProperty(name = "mensaje.general")
+    String mensaje_correcto;
+
+   /* Testing para el registro de tarjeta de debito o Credito */
 
     @Test
     public void addBankCardResponseGeneral(){
 
         BankCardDto obj  = new BankCardDto("4151415141511542",1221,"",12);
         Mockito.when(bankCardService.addBankCard(obj))
-               .thenReturn(new ResponseDto(code_creado, "Exitoso",new BankCardEntity()));
+               .thenReturn(new ResponseDto(code_creado, mensaje_correcto,new BankCardEntity()));
 
         Response response = bankCardResource.addBankCard(obj);
         assertNotNull(response);
