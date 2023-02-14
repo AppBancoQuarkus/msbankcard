@@ -4,6 +4,9 @@ package com.nttd.msbankcard.resource;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+
+import org.eclipse.microprofile.config.inject.ConfigProperty;
+
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -26,12 +29,19 @@ public class BankCardResourceTest {
     @InjectMock
     BankCardService bankCardService;
 
+
+
+    @ConfigProperty(name = "valor.code.creacion")
+    int code_creado;
+
+  
+
     @Test
     public void addBankCardResponseGeneral(){
 
         BankCardDto obj  = new BankCardDto("4151415141511542",1221,"",12);
         Mockito.when(bankCardService.addBankCard(obj))
-               .thenReturn(new ResponseDto(201, "Exitoso",new BankCardEntity()));
+               .thenReturn(new ResponseDto(code_creado, "Exitoso",new BankCardEntity()));
 
         Response response = bankCardResource.addBankCard(obj);
         assertNotNull(response);

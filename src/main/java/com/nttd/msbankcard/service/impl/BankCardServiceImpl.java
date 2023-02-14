@@ -1,5 +1,7 @@
 package com.nttd.msbankcard.service.impl;
 
+import org.eclipse.microprofile.config.inject.ConfigProperty;
+
 import com.nttd.msbankcard.dto.BankCardDto;
 import com.nttd.msbankcard.dto.ResponseDto;
 import com.nttd.msbankcard.entity.BankCardEntity;
@@ -9,13 +11,19 @@ import com.nttd.msbankcard.service.BankCardService;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
+import jakarta.ws.rs.core.Response;
 
 @ApplicationScoped
 public class BankCardServiceImpl implements BankCardService {
 
     @Inject
     BankCardRepository bankCardRepository;
+
+    @ConfigProperty(name = "exception.general")
+    String exceptionGeneral;
     
+    @ConfigProperty(name = "mensaje.general")
+    String mensajeGeneral;
 
     @Override
     @Transactional
@@ -27,9 +35,9 @@ public class BankCardServiceImpl implements BankCardService {
             bcEntity.setDuedate(bankCardDto.getDuedate());
             bcEntity.setValidationcode(bankCardDto.getValidationcode());
             bankCardRepository.persist(bcEntity);
-            return  new ResponseDto(201,"Exitoso.",bcEntity);
+            return  new ResponseDto(Response.Status.CREATED.getStatusCode(),mensajeGeneral,bcEntity);
         }catch(Exception ex){
-            return  new ResponseDto(400,"Bad Request.",ex.getMessage());
+            return  new ResponseDto(Response.Status.BAD_REQUEST.getStatusCode(),exceptionGeneral,ex.getMessage());
         }
             
     }
