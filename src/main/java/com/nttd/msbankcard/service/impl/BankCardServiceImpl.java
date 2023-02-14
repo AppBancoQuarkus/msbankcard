@@ -25,16 +25,25 @@ public class BankCardServiceImpl implements BankCardService {
     @ConfigProperty(name = "mensaje.general")
     String mensajeGeneral;
 
+    @ConfigProperty(name = "mensaje.tarjetaunica")
+    String mensajeTunica;
+    
+
     @Override
     @Transactional
     public ResponseDto addBankCard(BankCardDto bankCardDto){
         try{
-            BankCardEntity bcEntity = new BankCardEntity();
-            bcEntity.setCardnumber(bankCardDto.getCardnumber());
-            bcEntity.setPin(bankCardDto.getPin());
-            bcEntity.setDuedate(bankCardDto.getDuedate());
-            bcEntity.setValidationcode(bankCardDto.getValidationcode());
-            bankCardRepository.persist(bcEntity);
+            // verificar que el registro sea unico.
+            BankCardEntity bcEntity = bankCardRepository.find("cardnumber",bankCardDto.getCardnumber()).firstResult();
+                if(bcEntity == null){
+                    bcEntity = new BankCardEntity();
+                    bcEntity.setCardnumber(bankCardDto.getCardnumber());
+                    bcEntity.setPin(bankCardDto.getPin());
+                    bcEntity.setDuedate(bankCardDto.getDuedate());
+                    bcEntity.setValidationcode(bankCardDto.getValidationcode());
+                    bankCardRepository.persist(bcEntity);
+                }else return new ResponseDto(Response.Status.OK.getStatusCode(),exceptionGeneral,mensajeTunica);
+
             return  new ResponseDto(Response.Status.CREATED.getStatusCode(),mensajeGeneral,bcEntity);
         }catch(Exception ex){
             return  new ResponseDto(Response.Status.BAD_REQUEST.getStatusCode(),exceptionGeneral,ex.getMessage());

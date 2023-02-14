@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,7 +16,12 @@ import lombok.Setter;
 public class BankCardEntity  {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(
+            name = "bankcardSequence",
+            sequenceName = "bankcard_id_seq",
+            allocationSize = 1,
+            initialValue = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "bankcardSequence")    
     private long IdBANKCARD;   
 
     @Column(length = 16)
