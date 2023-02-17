@@ -1,5 +1,7 @@
 package com.nttd.msbankcard.service.impl;
 
+import java.util.List;
+
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 import com.nttd.msbankcard.dto.BankCardDto;
@@ -28,6 +30,24 @@ public class BankCardServiceImpl implements BankCardService {
     @ConfigProperty(name = "mensaje.tarjetaunica")
     String mensajeTunica;
     
+    @ConfigProperty(name = "mensaje.noexiste")
+    String mensajeNoExiste;    
+
+    @Override
+    public ResponseDto getAllBankCard(BankCardDto bankCardDto){
+
+        try{ List<BankCardEntity> listbkCardEnt = bankCardRepository.find
+							("cardnumber",
+                            bankCardDto.getCardnumber()).list();
+             if(listbkCardEnt.size() == 0)
+                return  new ResponseDto(Response.Status.NO_CONTENT.getStatusCode(),mensajeNoExiste,"");
+             else return new ResponseDto(Response.Status.OK.getStatusCode(),mensajeGeneral,listbkCardEnt.get(0)); 
+          
+        }catch(Exception ex){
+            return  new ResponseDto(Response.Status.BAD_REQUEST.getStatusCode(),exceptionGeneral,ex.getMessage());
+        } 
+        
+    }
 
     @Override
     @Transactional

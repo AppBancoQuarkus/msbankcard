@@ -12,6 +12,7 @@ import com.nttd.msbankcard.dto.BankCardDto;
 import com.nttd.msbankcard.dto.ResponseDto;
 import com.nttd.msbankcard.service.BankCardService;
 import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.GET;
 
 @Path("/api/bankcard")
 public class BankCardResource {
@@ -22,6 +23,14 @@ public class BankCardResource {
     @Inject
     Logger logger;
 
+    /* Obtener la tarjeta filtrando por numero de tarjeta */
+    @GET
+    public Response getAllBankCard(BankCardDto bankCardDto) {
+        logger.info("Inicio BankCardResource.getAllBankCard");
+		ResponseDto response = bankCardService.getAllBankCard(bankCardDto);							
+		return Response.ok(response).status(response.getCode()).build();
+    }
+
     /* Registrar tarjeta de debito o Credito */
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
@@ -31,4 +40,6 @@ public class BankCardResource {
         ResponseDto responsedto = bankCardService.addBankCard(bankCardDto);
         return Response.ok(responsedto).status(responsedto.getCode()).build();
     }
+
+
 }

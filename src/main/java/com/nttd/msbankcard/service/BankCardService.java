@@ -9,6 +9,8 @@ import com.nttd.msbankcard.dto.ResponseDto;
 
 public interface BankCardService {
     
+    public ResponseDto getAllBankCard(BankCardDto bankCardDto);
+
     public ResponseDto addBankCard(BankCardDto bankCardDto);
 
 

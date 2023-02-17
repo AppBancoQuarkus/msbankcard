@@ -20,20 +20,20 @@ public class BankCardEntity  {
             name = "bankcardSequence",
             sequenceName = "bankcard_id_seq",
             allocationSize = 1,
-            initialValue = 1)
+            initialValue = 8)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "bankcardSequence")    
     private long IdBANKCARD;   
 
     @Column(length = 16)
     private String cardnumber;
     
-    @Column(length = 3)
+    @Column(length = 4)
     private int pin;
     
     @Column
     private String duedate;
 
-    @Column
+    @Column(length = 3)
     private int validationcode;
     
 }
