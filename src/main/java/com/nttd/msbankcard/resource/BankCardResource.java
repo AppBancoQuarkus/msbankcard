@@ -3,6 +3,7 @@ package com.nttd.msbankcard.resource;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.Response;
 
@@ -33,6 +34,18 @@ public class BankCardResource {
 		ResponseDto response = bankCardService.getAllBankCard(bankCardDto);							
 		return Response.ok(response).status(response.getCode()).build();
     }
+
+     /* Obtener la tarjeta filtrando por numero de tarjeta */
+     @GET
+     @Path("{id}")
+     @Operation(summary = "Obtener bankcard filtrando por id",description = "Obtienes bankcard filtrando por id")
+     public Response getBankCardById(@PathParam("id") long id) {
+         logger.info("Inicio BankCardResource.getBankCardById");
+         ResponseDto response = bankCardService.getBankCardById(id);							
+         return Response.ok(response).status(response.getCode()).build();
+     }
+
+
 
     /* Registrar tarjeta de debito o Credito */
     @POST
