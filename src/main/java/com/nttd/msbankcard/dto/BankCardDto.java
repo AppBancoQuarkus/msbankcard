@@ -13,6 +13,7 @@ public class BankCardDto {
     private int pin;
     private String duedate;
     private int validationcode;
+    
 
 
     public BankCardDto() {
