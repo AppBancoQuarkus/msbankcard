@@ -13,5 +13,7 @@ public interface BankCardService {
 
     public ResponseDto addBankCard(BankCardDto bankCardDto);
 
+    public ResponseDto getBankCardById(long id);
 
+    
 }
